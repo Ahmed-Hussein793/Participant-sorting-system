@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>نظام فرز المشاركين</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-1: radial-gradient(1200px 800px at 120% -10%, #8bd3ff80 0%, transparent 60%),
+          radial-gradient(1000px 700px at -10% 120%, #ff8bd880 0%, transparent 60%),
+          linear-gradient(135deg, #0d0f1a 0%, #0b0e19 100%);
+  --neon-pink: #ff47b1;
+  --neon-blue: #4fd3ff;
+  --glass-bg: rgba(255,255,255,0.08);
+  --glass-stroke: rgba(255,255,255,0.22);
+  --text: #f6f7fb;
+  --muted: #b9c0d4;
+  --accent: #00d68f;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; direction: rtl; margin: 0; font-family: 'Cairo', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color: var(--text); background: var(--bg-1); }
+header { text-align: center; padding: 20px; }
+header h1 { font-size: 2.2em; margin: 0; }
+header a { font-size: 0.9em; display: block; color: var(--muted); text-decoration: none; margin-top: 5px; }
+header a:hover { text-decoration: underline; }
+main { padding: 20px; max-width: 1200px; margin: auto; }
+.instructions { font-size: 1em; text-align: center; margin-bottom: 15px; }
+textarea { width: 100%; padding: 12px; border-radius: 10px; border: none; font-size: 1em; background: var(--glass-bg); color: var(--text); resize: vertical; margin-bottom: 10px; }
+button { padding: 12px 20px; margin: 5px; border-radius: 12px; border: none; cursor: pointer; font-weight: 700; background: linear-gradient(90deg, var(--neon-pink), var(--neon-blue)); color: #0b0e19; transition: 0.3s; }
+button:hover { opacity: 0.9; }
+.tables-container { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 20px; }
+table { border-collapse: collapse; min-width: 220px; max-width: 300px; width: 100%; background: var(--glass-bg); color: var(--text); border-radius: 12px; overflow: hidden; box-shadow: 0 10px 24px #0006; }
+table caption { padding: 6px; font-weight: 700; background: var(--neon-blue); color: #0b0e19; }
+th, td { padding: 8px; text-align: center; }
+th { background: rgba(255,255,255,0.15); }
+td { background: rgba(0,0,0,0.1); }
+footer { background: linear-gradient(180deg, #101428, #0a0d1a); padding: 40px 20px; color: var(--muted); border-top: 1px solid #1f2442; }
+footer h3 { color: var(--neon-pink); margin-bottom: 12px; text-align: center; }
+.footer-contact, .footer-links { margin-bottom: 20px; text-align: center; }
+.footer-contact a { color: var(--text); text-decoration: none; margin: 0 10px; display: inline-block; }
+.footer-contact a:hover { color: var(--neon-blue); }
+.contact-form { max-width: 500px; margin: 20px auto; background: var(--glass-bg); padding: 20px; border-radius: 14px; border: 1px solid var(--glass-stroke); }
+.contact-form input, .contact-form textarea { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 10px; border: 1px solid var(--glass-stroke); background: rgba(255,255,255,0.05); color: var(--text); font-size: 14px; }
+.contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: var(--neon-blue); box-shadow: 0 0 10px var(--neon-blue); }
+.contact-form button { width: fit-content; margin: auto; display: block; }
+.evaluation { text-align: center; margin-top: 20px; font-size: 0.9em; }
+.evaluation a { color: var(--neon-blue); text-decoration: none; }
+.evaluation a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<header>
+<h1>نظام فرز المشاركين</h1>
+<a href="https://github.com/Ahmed-Hussein793" target="_blank">by Ahmed Hussein</a>
+</header>
+
+<main>
+<div class="instructions">
+ضع كل لاعب في سطر واحد، الاسم أولاً والوزن في النهاية، ثم اضغط "فرز اللاعبين".<br>
+يمكن حفظ البيانات محليًا أو مسحها لإعادة الفحص.
+</div>
+
+<textarea id="inputPlayers" rows="10" placeholder="اكتب اسم اللاعب ثم وزنه"></textarea>
+<br>
+<button id="generateBtn">فرز اللاعبين</button>
+<button id="clearBtn">مسح البيانات</button>
+
+<div class="tables-container" id="tablesContainer"></div>
+</main>
+
+<footer>
+<div class="footer-contact">
+<h3>تواصل معنا</h3>
+<a href="mailto:hsynghdban4@gmail.com" target="_blank">📧 البريد الإلكتروني</a>
+<a href="https://t.me/Ahmed_Hussein_g" target="_blank">💬 تليجرام</a>
+</div>
+
+<div class="contact-form">
+<form action="https://api.web3forms.com/submit" method="POST">
+<input type="hidden" name="access_key" value="2c1bff1c-b300-40e2-a53e-2f20f710259c">
+<input type="email" name="email" placeholder="اكتب بريدك الإلكتروني هنا" required>
+<input type="text" name="The messege" placeholder="اكتب رسالتك هنا" required>
+<button type="submit">إرسال</button>
+</form>
+</div>
+
+<div class="evaluation">
+يمكنك تقييم المنتج أو طرح المشاكل عبر <a href="https://github.com/Ahmed-Hussein793" target="_blank">المستودع هنا</a>.
+</div>
+</footer>
+
+<script>
+function order(persons) {
+    const groups = [];
+    for (let i = 15; i < 90; i += 10) {
+        const lower = i - 5;
+        const upper = i + 5;
+        const group = persons.filter(p => p.weight >= lower && p.weight <= upper);
+        if (group.length > 0) {
+            groups.push({ range: `${lower}-${upper}`, players: group });
+        }
+    }
+    return groups;
+}
+
+function renderTables(grouped) {
+    const container = document.getElementById('tablesContainer');
+    container.innerHTML = '';
+    grouped.forEach(group => {
+        const table = document.createElement('table');
+        const caption = document.createElement('caption');
+        caption.textContent = `نطاق الوزن: ${group.range}`;
+        table.appendChild(caption);
+        const thead = document.createElement('thead');
+        const trHead = document.createElement('tr');
+        const thName = document.createElement('th'); thName.textContent = 'اللاعبون';
+        const thWeight = document.createElement('th'); thWeight.textContent = 'الأوزان';
+        trHead.appendChild(thName); trHead.appendChild(thWeight); thead.appendChild(trHead);
+        table.appendChild(thead);
+        const tbody = document.createElement('tbody');
+        group.players.forEach(p => {
+            const tr = document.createElement('tr');
+            const tdName = document.createElement('td'); tdName.textContent = p.name;
+            const tdWeight = document.createElement('td'); tdWeight.textContent = p.weight;
+            tr.appendChild(tdName); tr.appendChild(tdWeight);
+            tbody.appendChild(tr);
+        });
+        table.appendChild(tbody);
+        container.appendChild(table);
+    });
+}
+
+document.getElementById('generateBtn').addEventListener('click', () => {
+    const input = document.getElementById('inputPlayers').value;
+    localStorage.setItem('playersData', input);
+    const lines = input.split('\n').map(line => line.trim()).filter(line => line.length > 0);
+    const persons = lines.map(line => {
+        const parts = line.split(' ');
+        const weight = Number(parts.pop());
+        const name = parts.join(' ');
+        return { name, weight };
+    });
+    const grouped = order(persons);
+    renderTables(grouped);
+});
+
+document.getElementById('clearBtn').addEventListener('click', () => {
+    localStorage.removeItem('playersData');
+    document.getElementById('inputPlayers').value = '';
+    document.getElementById('tablesContainer').innerHTML = '';
+});
+
+window.addEventListener('load', () => {
+    const saved = localStorage.getItem('playersData');
+    if(saved){
+        document.getElementById('inputPlayers').value = saved;
+        const lines = saved.split('\n').map(line => line.trim()).filter(line => line.length > 0);
+        const persons = lines.map(line => {
+            const parts = line.split(' ');
+            const weight = Number(parts.pop());
+            const name = parts.join(' ');
+            return { name, weight };
+        });
+        const grouped = order(persons);
+        renderTables(grouped);
+    }
+});
+</script>
+</body>
+</html>
